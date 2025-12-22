@@ -6,11 +6,7 @@ export default function DriverList() {
 
   useEffect(() => {
     fetchDrivers().then(data => {
-      // Remove duplicates by driver_number
-      const uniqueDrivers = Array.from(
-        new Map(data.map(driver => [driver.driver_number, driver])).values()
-      );
-      setDrivers(uniqueDrivers);
+      setDrivers(data);
     });
   }, []);
 
