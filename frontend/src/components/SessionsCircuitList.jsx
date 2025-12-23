@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { fetchSessionsByCircuit } from "../api/f1Api";
 
-export default function SessionsCircuitList({ circuit }) {
+export default function SessionsCircuitList({ circuit, year }) {
   const [circuitSessions, setCircuitSessions] = useState([]);
 
   useEffect(() => {
-    if (circuit) {
-      fetchSessionsByCircuit(circuit.circuit_short_name).then(data => {
-        setCircuitSessions(data);
-      });
-    }
-  }, [circuit]);
+    if (!circuit || !year) return;
+
+    fetchSessionsByCircuit(year, circuit.circuit_short_name)
+      .then(setCircuitSessions);
+
+  }, [circuit, year]);
 
   return (
     <div>

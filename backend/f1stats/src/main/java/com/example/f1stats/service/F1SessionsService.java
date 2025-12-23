@@ -13,50 +13,39 @@ public class F1SessionsService {
     private final RestTemplate restTemplate = new RestTemplate();
     private static final String BASE_URL = "https://api.openf1.org/v1/sessions";
 
-    public List<SessionDTO> getSessions(Integer year, String sessionType, String circuitShortName) {
-        String url = buildUrl(year, sessionType, circuitShortName);
+    public List<SessionDTO> getSessions(Integer year) {
+        if (year == null) {
+            throw new IllegalArgumentException();
+        }
+
+        String url = BASE_URL + "?year=" + year;
 
         SessionDTO[] response = Objects.requireNonNull(
                 restTemplate.getForObject(url, SessionDTO[].class)
         );
 
-        if (BASE_URL.equals(url)) {
-            return Arrays.stream(response)
-                    .sorted(Comparator.comparing(SessionDTO::getDateStart).reversed())
-                    .collect(Collectors.toMap(
-                            SessionDTO::getCircuitKey,
-                            session -> session,
-                            (existing, replacement) -> existing
-                    ))
-                    .values()
-                    .stream()
-                    .sorted(Comparator.comparing(SessionDTO::getDateStart).reversed())
-                    .toList();
-        }
-
-        return Arrays.stream(response).toList();
+        return Arrays.stream(response)
+                .filter(session -> session.getSessionName().equals("Race"))
+                .sorted(Comparator.comparing(SessionDTO::getDateStart))
+                .toList();
     }
 
-    private String buildUrl(Integer year, String sessionType, String circuitShortName) {
-        String url = BASE_URL;
-
-        if (year != null || sessionType != null || circuitShortName != null) {
-            url += "?";
-
-            if (year != null) {
-                url += "year=" + year;
-            }
-
-            if (sessionType != null) {
-                url += "session_type=" + sessionType;
-            }
-
-            if (circuitShortName != null) {
-                url += "circuit_short_name=" + circuitShortName;
-            }
+    public List<SessionDTO> getSessionInfo(Integer year, String circuitName) {
+        if (circuitName == null) {
+            throw new IllegalArgumentException();
         }
 
-        return url;
+        String url = BASE_URL +
+                "?year=" + year +
+                "&circuit_short_name=" + circuitName;
+
+        SessionDTO[] response = Objects.requireNonNull(
+                restTemplate.getForObject(url, SessionDTO[].class)
+        );
+
+        return Arrays.stream(response)
+                .sorted(Comparator.comparing(SessionDTO::getDateStart).reversed())
+                .toList();
     }
 
 }

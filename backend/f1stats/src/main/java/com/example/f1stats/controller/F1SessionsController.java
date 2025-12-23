@@ -22,11 +22,17 @@ public class F1SessionsController {
 
     @GetMapping("/sessions")
     public ResponseEntity<List<SessionDTO>> getSessions(
-            @RequestParam(required = false) Integer year,
-            @RequestParam(required = false) String sessionType,
-            @RequestParam(required = false) String circuitShortName
+            @RequestParam Integer year
     ) {
-        return ResponseEntity.ok(f1SessionsService.getSessions(year, sessionType, circuitShortName));
+        return ResponseEntity.ok(f1SessionsService.getSessions(year));
+    }
+
+    @GetMapping("/sessions/info")
+    public ResponseEntity<List<SessionDTO>> getSessionInfo(
+            @RequestParam Integer year,
+            @RequestParam String circuitName
+    ) {
+        return ResponseEntity.ok(f1SessionsService.getSessionInfo(year, circuitName));
     }
 
 }

@@ -5,22 +5,17 @@ export async function fetchDrivers() {
   return response.json();
 }
 
-export async function fetchSessions() {
-    const response = await fetch(`${BASE_URL}/sessions`)
-    return response.json();
-}
+// export async function fetchSessions() {
+//     const response = await fetch(`${BASE_URL}/sessions`)
+//     return response.json();
+// }
 
 export async function fetchSessionsByYear(year) {
     const response = await fetch(`${BASE_URL}/sessions?year=`+year)
     return response.json();
 }
 
-export async function fetchSessionsBySessionType(sessionType) {
-    const response = await fetch(`${BASE_URL}/sessions?sessionType=`+sessionType)
-    return response.json();
-}
-
-export async function fetchSessionsByCircuit(circuitShortName) {
-    const response = await fetch(`${BASE_URL}/sessions?circuitShortName=`+circuitShortName)
+export async function fetchSessionsByCircuit(year, circuitName) {
+    const response = await fetch(`${BASE_URL}/sessions/info?year=`+year+`&circuitName=`+circuitName)
     return response.json();
 }
