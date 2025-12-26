@@ -16,6 +16,11 @@ export async function fetchSessionsByYear(year) {
 }
 
 export async function fetchSessionsByCircuit(year, circuitName) {
-    const response = await fetch(`${BASE_URL}/sessions/info?year=`+year+`&circuitName=`+circuitName)
+    const response = await fetch(`${BASE_URL}/sessions/infos?year=`+year+`&circuitName=`+circuitName)
+    return response.json();
+}
+
+export async function fetchSessionResults(sessionKey) {
+    const response = await fetch(`${BASE_URL}/sessions/results?sessionKey=`+sessionKey)
     return response.json();
 }
