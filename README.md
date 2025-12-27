@@ -2,14 +2,14 @@
 Clone the repository from GitHub using SSH
 
 ## Frontend
-Move to `frontend` repository and buil: `npm run build`
+Move to `frontend` directory and buil: `npm run build`
 
 If you don't have installed `npm`:
 - run `npm install`
 - continue with `npm run build`
 
 ## Backend
-Move to `f1stats` repository and build: `./gradlew bootJar`
+Move to `f1stats` directory and build: `./gradlew bootJar`
 
 ## Run the app
 Move to `backend/f1stats` and run: `java -jar build/libs/f1stats-0.0.1-SNAPSHOT.jar`\
