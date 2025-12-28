@@ -27,8 +27,6 @@ node -v
 npm -v
 ```
 
-The build script will automatically run `npm install`.
-
 ## INSTALLATION & RUNNING THE APPLICATION
 
 1. Clone the repository
