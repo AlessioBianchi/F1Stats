@@ -1,18 +1,69 @@
-# Installation
-Clone the repository from GitHub using SSH
+# F1StatsApp
 
-## Frontend
-Move to `frontend` directory and buil: `npm run build`
+## F1StatsApp is a full-stack application composed of:
+- a frontend built with Node.js
+- a backend built with Java (Spring Boot)
 
-If you don't have installed `npm`:
-- run `npm install`
-- continue with `npm run build`
+A Bash script is provided to build both parts and start the application automatically.
 
-## Backend
-Move to `f1stats` directory and build: `./gradlew bootJar`
+## REQUIREMENTS
 
-## Run the app
-Move to `backend/f1stats` and run: `java -jar build/libs/f1stats-0.0.1-SNAPSHOT.jar`\
-Open you browser and go to `http://localhost:8080/`
+Before running the application, ensure the following are installed.
 
-You are ready to go! 🚀
+Java
+- Java 21 is required
+
+Verify:
+```
+java -version
+```
+
+Node.js & npm
+- Node.js (includes npm) is required
+
+Verify:
+```
+node -v
+npm -v
+```
+
+The build script will automatically run `npm install`.
+
+## INSTALLATION & RUNNING THE APPLICATION
+
+1. Clone the repository
+```
+git clone git@github.com:YOUR_USERNAME/F1StatsApp.git
+cd F1StatsApp
+```
+
+2. Make the build script executable (one time only)
+```
+chmod +x build_and_run.sh
+```
+
+3. Build and run the application
+```
+./build_and_run.sh
+```
+
+The script will:
+- install frontend dependencies
+- build the frontend
+- build the backend
+- copy frontend files into the backend
+- start the application
+
+## ACCESSING THE APPLICATION
+
+Open your browser and navigate to:
+
+`http://localhost:8080/`
+
+The application is now running.
+
+## TROUBLESHOOTING
+
+- Ensure java, node, and npm are available in your PATH
+- If chmod does not work, run the script with: `bash build_and_run.sh`
+- On Windows (WSL), make sure the project is located inside your Linux home directory
