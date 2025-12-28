@@ -46,7 +46,6 @@ chmod +x build_and_run.sh
 ```
 
 The script will:
-- install frontend dependencies
 - build the frontend
 - build the backend
 - copy frontend files into the backend
@@ -58,7 +57,7 @@ Open your browser and navigate to:
 
 `http://localhost:8080/`
 
-The application is now running.
+The application is now running! 🚀
 
 ## TROUBLESHOOTING
 
