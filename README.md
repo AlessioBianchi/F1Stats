@@ -31,7 +31,7 @@ npm -v
 
 1. Clone the repository
 ```
-git clone git@github.com:YOUR_USERNAME/F1StatsApp.git
+git clone git@github.com:AlessioBianchi/F1Stats.git F1StatsApp
 cd F1StatsApp
 ```
 
